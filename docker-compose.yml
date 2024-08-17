@@ -1,0 +1,21 @@
+version: '3'
+services:
+  myapplication:
+    build: .
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/usr/src/app
+    command: npm run start:dev
+    environment:
+      - PORT=4000
+      - EMAIL_HOST=live.smtp.mailtrap.io
+      - EMAIL_PORT=587
+      - EMAIL_USERNAME=api
+      - EMAIL_PASSWORD=45176ec8f54ad5d996d848a8bda45237
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
